@@ -1,0 +1,13 @@
+<header>
+  <div class="logo">
+    <i class="fa fa-bars"></i>
+  </div>
+  <nav>
+    <ul class="desktop">
+      <li><button class="btn btn-lg btn-danger" (click)="logout()">LOG OUT</button></li>
+    </ul>
+    <ul class="mobile" *ngIf="mobileNav">
+      <li><button class="btn btn-lg btn-danger" (click)="logout()">LOG OUT</button></li>
+    </ul>
+  </nav>
+</header>

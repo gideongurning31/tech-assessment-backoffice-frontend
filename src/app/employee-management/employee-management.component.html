@@ -1,3 +1,55 @@
 <h3 style="text-align: center; margin-top: 25px;">
   EMPLOYEE MANAGEMENT
 </h3>
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style="width: max-content;">#</th>
+          <th scope="col" style="width: max-content;">Username</th>
+          <th scope="col" style="width: max-content;">Name</th>
+          <th scope="col" style="width: max-content;">Email</th>
+          <th scope="col" style="width: max-content;">Birth Date</th>
+          <th scope="col" style="width: max-content;">Basic Salary</th>
+          <th scope="col" style="width: max-content;">Status</th>
+          <th scope="col" style="width: max-content;">Group</th>
+          <th scope="col" style="width: max-content;">Description</th>
+          <th scope="col" style="width: max-content;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dataTable; let i = index">
+          <td><strong>{{ i + 1 }}</strong></td>
+          <td>{{ data.username }}</td>
+          <td>{{ data.firstName + ' ' + data.lastName }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.birthDate | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ data.basicSalary }}</td>
+          <td>{{ data.status }}</td>
+          <td>{{ data.group }}</td>
+          <td>{{ data.description }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-warning btn-table"
+              matTooltip="View/change employee data"
+              matTooltipPosition="below"
+              (click)="openForm('UPDATE', data)">
+              <i class="fa fa-pencil-square-o"></i>
+            </button>
+            &nbsp;|&nbsp;
+            <button
+              type="button"
+              class="btn btn-danger btn-table"
+              matTooltip="Remove/delete employee data"
+              matTooltipPosition="below"
+              (click)="openForm('DELETE', data)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

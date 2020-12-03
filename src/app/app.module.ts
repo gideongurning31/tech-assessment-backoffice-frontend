@@ -1,6 +1,7 @@
 // Framework Modules
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // App Modules
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +17,12 @@ import { HttpUtilService } from './common/http-util.service';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, EmployeeManagementModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    EmployeeManagementModule,
+  ],
   providers: [HttpUtilService],
   bootstrap: [AppComponent],
 })

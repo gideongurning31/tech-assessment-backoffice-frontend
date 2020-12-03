@@ -1,0 +1,31 @@
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+  max-width: 90vw;
+}
+
+.table>thead>tr>th,
+.table>tbody>tr>td {
+  vertical-align: middle;
+  font-size: 90%;
+}
+
+th, td {
+  padding: 7px;
+  text-align: center;
+}
+
+tbody {
+  background-color: rgba($color: #fff, $alpha: .5);
+}
+
+.btn-table {
+  padding: 3px 6px;
+  font-size: 12px;
+}
+
+.no-data {
+  width: 80%;
+  margin: 50px 10% 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+}

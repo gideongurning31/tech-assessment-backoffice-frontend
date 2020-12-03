@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
 import { Employee, dummyData } from './employee.model';
 
 @Component({
@@ -7,7 +9,7 @@ import { Employee, dummyData } from './employee.model';
   styleUrls: ['employee-management.component.scss'],
 })
 export class EmployeeManagementComponent implements OnInit {
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   dataTable: Array<Employee>;
 
@@ -15,8 +17,10 @@ export class EmployeeManagementComponent implements OnInit {
     this.dataTable = dummyData;
   }
 
-  openForm(action: string, data?: Employee) {
-    console.log(ActionType[action], data);
+  openForm(action: string, employee?: Employee) {
+    this.dialog.open(EmployeeManagementFormComponent, {
+      data: { employee, action: ActionType[action] },
+    });
   }
 }
 

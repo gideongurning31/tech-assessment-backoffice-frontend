@@ -7,19 +7,23 @@ import { Employee } from '../employee.model';
 @Component({
   selector: 'app-employee',
   templateUrl: 'employee-management-form.component.html',
-  styleUrls: ['../employee-management.component.scss'],
+  styleUrls: [
+    '../employee-management.component.scss',
+    'employee-management-form.component.scss',
+  ],
 })
 export class EmployeeManagementFormComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: EmployeeFormData) {}
 
   title: string;
   form: FormGroup;
-  employee: Employee;
 
   ngOnInit() {
     this.initForm();
     this.title = FormHeaders[this.data.action];
-    console.log(this.data.employee);
+    if (this.data.employee) {
+      this.setFormValue();
+    }
   }
 
   initForm() {
@@ -35,6 +39,20 @@ export class EmployeeManagementFormComponent implements OnInit {
       description: new FormControl(null, Validators.required),
     });
   }
+
+  setFormValue() {
+    Object.keys(this.data.employee).forEach((key) => {
+      this.form.controls[key].setValue(this.data.employee[key]);
+    });
+
+    if (this.data.action === 'DELETE') {
+      this.form.disable();
+    }
+  }
+
+  submit() {}
+
+  cancel() {}
 }
 
 interface EmployeeFormData {

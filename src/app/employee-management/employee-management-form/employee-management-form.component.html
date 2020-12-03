@@ -1,8 +1,69 @@
-<h3 style="text-align: center; margin-top: 25px;">
-  {{ title }}
-</h3>
-<div class="container">
+<div class="container popup-form">
   <div class="row">
-    EMPLOYEE FORM BODY
+    <h5 class="form-title">{{ title }}</h5>
+  </div>
+  <hr>
+  <form [formGroup]="form">
+    <div class="container">
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputUsername">Username:</label>
+          <input type="text" formControlName="username" id="inputUsername" class="form-control" placeholder="Input employee's username">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="inputEmail">Email:</label>
+          <input type="email" formControlName="email" id="inputEmail" class="form-control" placeholder="Input employee's email address">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputFirstname">First Name:</label>
+          <input type="text" formControlName="firstName" id="inputFirstname" class="form-control" placeholder="Input employee's first name (given name)">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputLastname">Last Name:</label>
+          <input type="text" formControlName="lastName" id="inputLastname" class="form-control" placeholder="Input employee's last name (surname)">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputBirthdate">Birth Date:</label>
+          <input type="date" formControlName="birthDate" id="inputBirthdate" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputBasicSalary">Basic Salary:</label>
+          <input type="number" formControlName="basicSalary" id="inputBasicSalary" class="form-control">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputStatus">Status:</label>
+          <input type="text" formControlName="status" id="inputStatus" class="form-control">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputGroup">Group:</label>
+          <input type="text" formControlName="group" id="inputGroup" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputDescription">Description:</label>
+          <textarea rows="2" formControlName="description" id="inputDescription" class="form-control" placeholder="Employee's description"></textarea>
+        </div>
+      </div>
+
+    </div>
+  </form>
+  <hr>
+  <div class="form-footer">
+    <button type="button" class="btn btn-lg btn-success form-button" (click)="submit()">{{ data.action == 'DELETE' ? 'Delete' : 'Submit' }}</button>
+    <button type="button" class="btn btn-lg btn-danger form-button" (click)="cancel()">Cancel</button>
   </div>
 </div>

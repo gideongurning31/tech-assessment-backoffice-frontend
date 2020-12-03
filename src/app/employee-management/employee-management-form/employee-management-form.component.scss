@@ -1,0 +1,41 @@
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  max-width: 75vw;
+  font-size: 90%;
+}
+
+.form-group.col-md-12,
+.form-group.col-md-6,
+.form-group.col-md-4 {
+  padding: 0 15px;
+  margin: 9px 0;
+}
+
+.popup-form {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  max-height: 70vh;
+}
+
+.form-title {
+  margin: 15px auto;
+  text-align: center;
+}
+
+.form-group {
+  padding: 0;
+  margin: 25px 0;
+}
+
+.form-footer {
+  margin: 20px;
+}
+
+.form-button {
+  min-width: 200px;
+  margin-right: 50px;
+}

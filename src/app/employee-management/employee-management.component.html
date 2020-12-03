@@ -2,7 +2,7 @@
   EMPLOYEE MANAGEMENT
 </h3>
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="dataTable && dataTable.length > 0; else noData">
     <table class="table table-bordered table-hover">
       <thead class="thead-dark">
         <tr>
@@ -51,5 +51,19 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <ng-template #noData>
+    <p class="no-data">No data to display.</p>
+  </ng-template>
+  <div class="row btn-container">
+    <button
+      class="btn btn-success"
+      [ngClass]="dataTable && dataTable.length > 0
+      ? 'btn-right'
+      : 'btn-center'"
+      (click)="openForm('CREATE')">
+      <i class="fa fa-plus"></i>
+      &nbsp;New Employee Data
+    </button>
   </div>
 </div>

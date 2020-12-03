@@ -15,7 +15,7 @@ export class EmployeeManagementComponent implements OnInit {
     this.dataTable = dummyData;
   }
 
-  openForm(action: string, data: Employee) {
+  openForm(action: string, data?: Employee) {
     console.log(ActionType[action], data);
   }
 }

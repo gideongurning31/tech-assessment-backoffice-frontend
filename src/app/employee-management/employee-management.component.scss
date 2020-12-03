@@ -1,4 +1,8 @@
-.container, .container-lg, .container-md, .container-sm, .container-xl {
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
   max-width: 90vw;
 }
 
@@ -20,6 +24,19 @@ tbody {
 .btn-table {
   padding: 3px 6px;
   font-size: 12px;
+}
+
+.btn-container {
+  position: relative;
+}
+
+.btn-right {
+  position: absolute;
+  right: 0;
+}
+
+.btn-center {
+  margin: auto;
 }
 
 .no-data {

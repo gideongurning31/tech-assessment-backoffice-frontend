@@ -1,0 +1,19 @@
+.absolute {
+  position: absolute;
+  top: 9vh;
+  min-height: 91vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.content {
+  position: relative;
+  margin-bottom: 55px;
+}
+
+@media (max-width: 810px) {
+  .absolute {
+    min-height: auto;
+  }
+}

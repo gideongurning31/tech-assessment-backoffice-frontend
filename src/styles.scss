@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --palette-B1: #153E90;
+  --palette-B2: #0E49B5;
+  --palette-G: #54E346;
+  --palette-Y: #FFFAA4;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Nunito", "Helvetica Neue", sans-serif;
+  background-color: var(--palette-Y);
+  color: var(--palette-B1);
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Montserrat", "Helvetica Neue", sans-serif;
+}

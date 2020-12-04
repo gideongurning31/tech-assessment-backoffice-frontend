@@ -25,6 +25,7 @@ export class EmployeeManagementFormComponent implements OnInit {
   statusSelect: Array<LabelValue>;
   groupSelect: Array<LabelValue>;
   todayDate: string;
+  fieldErrors: Array<string>;
 
   ngOnInit() {
     this.title = FormHeaders[this.data.action];
@@ -50,6 +51,7 @@ export class EmployeeManagementFormComponent implements OnInit {
       group: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
     });
+    this.fieldErrors = [];
   }
 
   setFormValue() {
@@ -63,6 +65,19 @@ export class EmployeeManagementFormComponent implements OnInit {
 
     if (this.data.action === 'DELETE') {
       this.form.disable();
+    }
+  }
+
+  checkEmail() {
+    if (this.form.controls.email.errors && this.form.controls.email.errors.pattern && this.fieldErrors.indexOf('emailPattern') === -1) {
+      this.fieldErrors.push('emailPattern');
+    }
+  }
+
+  removeError(err: string) {
+    const index = this.fieldErrors.indexOf(err);
+    if (index > -1) {
+      this.fieldErrors.splice(index, 1);
     }
   }
 

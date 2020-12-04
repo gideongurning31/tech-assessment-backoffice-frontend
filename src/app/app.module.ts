@@ -17,6 +17,7 @@ import { NotFoundComponent } from './common/not-found-component';
 
 // Services
 import { HttpUtilService } from './common/http-util.service';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { HttpUtilService } from './common/http-util.service';
     AppRoutingModule,
     EmployeeManagementModule,
   ],
-  providers: [HttpUtilService],
+  providers: [HttpUtilService, LoginService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

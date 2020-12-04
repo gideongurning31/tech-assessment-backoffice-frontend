@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService, LoginPayload } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +9,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   loginForm: FormGroup;
-  formErrors: {};
+  invalidCreds: boolean;
 
   ngOnInit(): void {
     this.initLoginForm();
@@ -21,31 +23,19 @@ export class LoginComponent implements OnInit {
       username: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
     });
-    this.formErrors = { username: null, password: null };
-  }
-
-  releaseFormErrors(keys: Array<string>): void {
-    keys.forEach((key) => {
-      if (this.formErrors.hasOwnProperty(key)) {
-        this.formErrors[key] = null;
-      }
-    });
+    this.invalidCreds = false;
   }
 
   submit() {
-    if (this.validateForm()) {
-      console.log(this.loginForm.value);
+    if (this.loginForm.valid) {
+      this.onLogin(this.loginForm.value);
     }
   }
 
-  private validateForm(): boolean {
-    const values = this.loginForm.value;
-    Object.keys(this.formErrors).forEach((key) => {
-      if (values[key] === null || values[key].trim() === '') {
-        this.formErrors[key] = `*${key} is mandatory.`;
-      }
-    });
-    return;
+  private onLogin(credentials: LoginPayload) {
+    this.invalidCreds = !this.loginService.login(credentials);
+    if (!this.invalidCreds) {
+      this.router.navigate(['/']);
+    }
   }
-
 }

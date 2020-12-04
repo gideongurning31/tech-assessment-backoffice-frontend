@@ -38,17 +38,42 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="inputBasicSalary">Basic Salary:</label>
-          <input type="number" formControlName="basicSalary" id="inputBasicSalary" class="form-control">
-        </div>
-
-        <div class="form-group col-md-4">
-          <label for="inputStatus">Status:</label>
-          <input type="text" formControlName="status" id="inputStatus" class="form-control">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Rp.</div>
+            </div>
+            <input type="number" formControlName="basicSalary" id="inputBasicSalary" class="form-control">
+          </div>
         </div>
 
         <div class="form-group col-md-4">
           <label for="inputGroup">Group:</label>
-          <input type="text" formControlName="group" id="inputGroup" class="form-control">
+          <select formControlName="group" id="inputGroup" class="form-control">
+            <option
+              *ngFor="let group of groupSelect"
+              value="{{ group }}"
+              id="{{ 'select' + group }}"
+              data-toggle="tooltip"
+              data-placement="right"
+              [title]="group | titlecase">
+              {{ group | titlecase }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputStatus">Status:</label>
+          <select formControlName="status" id="inputStatus" class="form-control">
+            <option
+              *ngFor="let status of statusSelect"
+              value="{{ status }}"
+              id="{{ 'select' + status }}"
+              data-toggle="tooltip"
+              data-placement="right"
+              [title]="status | titlecase">
+              {{ status }}
+            </option>
+          </select>
         </div>
       </div>
 

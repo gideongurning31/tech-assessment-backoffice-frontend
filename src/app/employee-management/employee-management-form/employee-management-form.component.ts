@@ -2,7 +2,11 @@ import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import * as moment from 'moment';
 import { Employee } from '../employee.model';
+
+const STATUS_SELECT = ['01', '02', '03'];
+const GROUP_SELECT = ['AVENGERS', 'JUSTICE LEAGUE', 'DISNEY'];
 
 @Component({
   selector: 'app-employee',
@@ -17,10 +21,14 @@ export class EmployeeManagementFormComponent implements OnInit {
 
   title: string;
   form: FormGroup;
+  statusSelect: Array<string>;
+  groupSelect: Array<string>;
 
   ngOnInit() {
-    this.initForm();
     this.title = FormHeaders[this.data.action];
+    this.statusSelect = STATUS_SELECT;
+    this.groupSelect = GROUP_SELECT;
+    this.initForm();
     if (this.data.employee) {
       this.setFormValue();
     }
@@ -42,7 +50,11 @@ export class EmployeeManagementFormComponent implements OnInit {
 
   setFormValue() {
     Object.keys(this.data.employee).forEach((key) => {
-      this.form.controls[key].setValue(this.data.employee[key]);
+      let value = this.data.employee[key];
+      if (key === 'birthDate') {
+        value = moment(value).format('YYYY-MM-DD');
+      }
+      this.form.controls[key].setValue(value);
     });
 
     if (this.data.action === 'DELETE') {

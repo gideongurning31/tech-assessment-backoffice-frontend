@@ -7,6 +7,7 @@ import { LabelValue } from 'src/app/common/label-value.model';
 import { Employee } from '../employee.model';
 import * as moment from 'moment';
 declare let $: any;
+const EMAIL_REGEX = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
 
 @Component({
   selector: 'app-employee',
@@ -40,7 +41,7 @@ export class EmployeeManagementFormComponent implements OnInit {
       username: new FormControl(null, Validators.required),
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.pattern(EMAIL_REGEX)]),
       birthDate: new FormControl(null, Validators.required),
       basicSalary: new FormControl(null, Validators.required),
       status: new FormControl(null, Validators.required),

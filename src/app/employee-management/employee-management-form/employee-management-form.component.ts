@@ -4,8 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LabelValue } from 'src/app/common/label-value.model';
 import { Employee } from '../employee.model';
-import { DropdownSearchComponent } from './dropdown-search/dropdown-search.component';
 import * as moment from 'moment';
+declare let $: any;
 
 const STATUS_SELECT = [
   { label: '01', value: '01' },
@@ -35,13 +35,12 @@ export class EmployeeManagementFormComponent implements OnInit {
   statusSelect: Array<LabelValue>;
   groupSelect: Array<LabelValue>;
 
-  @ViewChild(DropdownSearchComponent) dropdownSearch: DropdownSearchComponent;
-
   ngOnInit() {
     this.title = FormHeaders[this.data.action];
     this.statusSelect = STATUS_SELECT;
     this.groupSelect = GROUP_SELECT;
     this.initForm();
+    this.initDropdownSearch();
     if (this.data.employee) {
       this.setFormValue();
     }
@@ -80,6 +79,12 @@ export class EmployeeManagementFormComponent implements OnInit {
   cancel() {
     this.dialogRef.close();
     this.initForm();
+  }
+
+  private initDropdownSearch() {
+    $('.select2').select2({
+      placeholder: 'Select Group'
+    });
   }
 }
 

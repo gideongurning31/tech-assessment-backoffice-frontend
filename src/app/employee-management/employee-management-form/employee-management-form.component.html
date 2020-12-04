@@ -2,7 +2,6 @@
   <div class="row">
     <h5 class="form-title">{{ title }}</h5>
   </div>
-  <hr>
   <form [formGroup]="form">
     <div class="container">
 
@@ -63,7 +62,11 @@
 
         <div class="form-group col-md-4">
           <label for="inputGroup">Group:</label>
-          <app-dropdown-search [id]="'inputGroup'" [options]="groupSelect"></app-dropdown-search>
+          <select id="inputGroup" formControlName="group" class="form-control select2">
+            <option *ngFor="let group of groupSelect" value="{{ group.value }}">
+              {{ group.label | titlecase }}
+            </option>
+          </select>
         </div>
       </div>
 

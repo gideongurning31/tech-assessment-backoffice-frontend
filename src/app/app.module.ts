@@ -18,7 +18,7 @@ import { NotFoundComponent } from './common/not-found-component';
 // Services
 import { HttpUtilService } from './common/http-util.service';
 import { LoginService } from './login/login.service';
-import { SessionGuard } from './common/session-guard.service';
+import { LoginGuard, SessionGuard } from './common/session-guard.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { SessionGuard } from './common/session-guard.service';
     AppRoutingModule,
     EmployeeManagementModule,
   ],
-  providers: [HttpUtilService, LoginService, SessionGuard],
+  providers: [HttpUtilService, LoginService, SessionGuard, LoginGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

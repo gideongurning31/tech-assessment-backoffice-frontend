@@ -14,3 +14,16 @@ export class SessionGuard implements CanActivate {
     return false;
   }
 }
+
+@Injectable()
+export class LoginGuard implements CanActivate {
+  constructor(private router: Router) {}
+  canActivate(): boolean {
+    const session = localStorage.getItem('session');
+    if (!session || session !== 'localSession') {
+      return true;
+    }
+    this.router.navigate(['/']);
+    return false;
+  }
+}

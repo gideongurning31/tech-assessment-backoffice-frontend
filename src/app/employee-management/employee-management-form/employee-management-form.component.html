@@ -30,7 +30,7 @@
 
         <div class="form-group col-md-4">
           <label for="inputBirthdate">Birth Date:</label>
-          <input type="date" formControlName="birthDate" id="inputBirthdate" class="form-control">
+          <input type="date" formControlName="birthDate" id="inputBirthdate" class="form-control" [max]="todayDate">
         </div>
       </div>
 

@@ -24,6 +24,7 @@ export class EmployeeManagementFormComponent implements OnInit {
   form: FormGroup;
   statusSelect: Array<LabelValue>;
   groupSelect: Array<LabelValue>;
+  todayDate: string;
 
   ngOnInit() {
     this.title = FormHeaders[this.data.action];
@@ -31,6 +32,7 @@ export class EmployeeManagementFormComponent implements OnInit {
     this.groupSelect = GROUP_SELECT;
     this.initForm();
     this.initDropdownSearch();
+    this.todayDate = moment(new Date()).format('YYYY-MM-DD');
     if (this.data.employee) {
       this.setFormValue();
     }

@@ -11,12 +11,18 @@ import { EmployeeManagementModule } from './employee-management/employee-managem
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { NotFoundComponent } from './common/not-found-component';
 
 // Services
 import { HttpUtilService } from './common/http-util.service';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    FooterComponent,
+    NotFoundComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

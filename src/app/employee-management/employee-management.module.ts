@@ -8,10 +8,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EmployeeManagementRoutingModule } from './employee-management-routing.module';
 import { EmployeeManagementComponent } from './employee-management.component';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
+import { DropdownSearchComponent } from './employee-management-form/dropdown-search/dropdown-search.component';
 import { EmployeeManagementService } from './employee-management.service';
 
 @NgModule({
-  declarations: [EmployeeManagementComponent, EmployeeManagementFormComponent],
+  declarations: [
+    EmployeeManagementComponent,
+    EmployeeManagementFormComponent,
+    DropdownSearchComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,

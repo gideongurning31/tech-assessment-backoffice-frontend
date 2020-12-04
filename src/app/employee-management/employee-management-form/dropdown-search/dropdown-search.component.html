@@ -1,0 +1,11 @@
+<select id="{{ id }}" class="form-control">
+  <option
+    *ngFor="let option of options"
+    value="{{ option }}"
+    id="{{ 'select' + option }}"
+    data-toggle="tooltip"
+    data-placement="right"
+    [title]="option | titlecase">
+    {{ option | titlecase }}
+  </option>
+</select>

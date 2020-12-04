@@ -1,9 +1,10 @@
-import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { Inject, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import * as moment from 'moment';
 import { Employee } from '../employee.model';
+import { DropdownSearchComponent } from './dropdown-search/dropdown-search.component';
+import * as moment from 'moment';
 
 const STATUS_SELECT = ['01', '02', '03'];
 const GROUP_SELECT = ['AVENGERS', 'JUSTICE LEAGUE', 'DISNEY'];
@@ -23,6 +24,8 @@ export class EmployeeManagementFormComponent implements OnInit {
   form: FormGroup;
   statusSelect: Array<string>;
   groupSelect: Array<string>;
+
+  @ViewChild(DropdownSearchComponent) dropdownSearch: DropdownSearchComponent;
 
   ngOnInit() {
     this.title = FormHeaders[this.data.action];

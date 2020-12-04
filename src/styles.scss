@@ -21,6 +21,11 @@ h1, h2, h3, h4, h5 {
   font-family: "Montserrat", "Helvetica Neue", sans-serif;
 }
 
+
+input:disabled, select:disabled, button:disabled {
+  cursor: not-allowed;
+}
+
 .select2-selection__rendered {
   line-height: 35px !important;
 }

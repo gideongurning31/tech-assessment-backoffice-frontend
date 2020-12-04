@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Inject, ViewChild } from '@angular/core';
+import { Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LabelValue } from 'src/app/common/label-value.model';
@@ -74,7 +74,9 @@ export class EmployeeManagementFormComponent implements OnInit {
     }
   }
 
-  submit() {}
+  submit() {
+    console.log(this.form.value);
+  }
 
   cancel() {
     this.dialogRef.close();
@@ -82,8 +84,9 @@ export class EmployeeManagementFormComponent implements OnInit {
   }
 
   private initDropdownSearch() {
-    $('.select2').select2({
-      placeholder: 'Select Group'
+    $('.select2').select2({ placeholder: 'Select Group' });
+    $('#inputGroup').on('select2:select', event => {
+      this.form.controls.group.setValue(event.params.data.id);
     });
   }
 }

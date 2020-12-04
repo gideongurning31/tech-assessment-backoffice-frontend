@@ -81,7 +81,13 @@
   </form>
   <hr>
   <div class="form-footer">
-    <button type="button" class="btn btn-lg btn-success form-button" (click)="submit()">{{ data.action == 'DELETE' ? 'Delete' : 'Save' }}</button>
+    <button
+      type="button"
+      class="btn btn-lg btn-success form-button"
+      (click)="submit()"
+      [disabled]="!form.valid && data.action !== 'DELETE'">
+      {{ data.action === 'DELETE' ? 'Delete' : 'Save' }}
+    </button>
     <button type="button" class="btn btn-lg btn-danger form-button" (click)="cancel()">Cancel</button>
   </div>
 </div>

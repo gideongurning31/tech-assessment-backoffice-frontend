@@ -2,22 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { GROUP_SELECT, STATUS_SELECT } from 'src/app/dummy-data';
 import { LabelValue } from 'src/app/common/label-value.model';
 import { Employee } from '../employee.model';
 import * as moment from 'moment';
 declare let $: any;
-
-const STATUS_SELECT = [
-  { label: '01', value: '01' },
-  { label: '02', value: '02' },
-  { label: '03', value: '03' },
-];
-
-const GROUP_SELECT = [
-  { label: 'AVENGERS', value: 'AVENGERS' },
-  { label: 'JUSTICE LEAGUE', value: 'JUSTICE LEAGUE' },
-  { label: 'DISNEY', value: 'DISNEY' },
-];
 
 @Component({
   selector: 'app-employee',

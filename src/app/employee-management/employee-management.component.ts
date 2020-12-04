@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
-import { Employee, dummyData } from './employee.model';
+import { Employee } from './employee.model';
+import { dummyData } from '../dummy-data';
 
 @Component({
   selector: 'app-employee',

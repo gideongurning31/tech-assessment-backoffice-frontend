@@ -1,13 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Inject, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LabelValue } from 'src/app/common/label-value.model';
 import { Employee } from '../employee.model';
 import { DropdownSearchComponent } from './dropdown-search/dropdown-search.component';
 import * as moment from 'moment';
 
-const STATUS_SELECT = ['01', '02', '03'];
-const GROUP_SELECT = ['AVENGERS', 'JUSTICE LEAGUE', 'DISNEY'];
+const STATUS_SELECT = [
+  { label: '01', value: '01' },
+  { label: '02', value: '02' },
+  { label: '03', value: '03' },
+];
+
+const GROUP_SELECT = [
+  { label: 'AVENGERS', value: 'AVENGERS' },
+  { label: 'JUSTICE LEAGUE', value: 'JUSTICE LEAGUE' },
+  { label: 'DISNEY', value: 'DISNEY' },
+];
 
 @Component({
   selector: 'app-employee',
@@ -18,12 +28,12 @@ const GROUP_SELECT = ['AVENGERS', 'JUSTICE LEAGUE', 'DISNEY'];
   ],
 })
 export class EmployeeManagementFormComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: EmployeeFormData) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: EmployeeFormData, private dialogRef: MatDialogRef<EmployeeManagementFormComponent>) {}
 
   title: string;
   form: FormGroup;
-  statusSelect: Array<string>;
-  groupSelect: Array<string>;
+  statusSelect: Array<LabelValue>;
+  groupSelect: Array<LabelValue>;
 
   @ViewChild(DropdownSearchComponent) dropdownSearch: DropdownSearchComponent;
 
@@ -67,7 +77,10 @@ export class EmployeeManagementFormComponent implements OnInit {
 
   submit() {}
 
-  cancel() {}
+  cancel() {
+    this.dialogRef.close();
+    this.initForm();
+  }
 }
 
 interface EmployeeFormData {

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LabelValue } from 'src/app/common/label-value.model';
 
 @Component({
   selector: 'app-dropdown-search',
@@ -13,9 +14,11 @@ export class DropdownSearchComponent implements OnInit {
   constructor() {}
 
   @Input() id: string;
-  @Input() options: Array<string>;
+  @Input() options: Array<LabelValue>;
 
   ngOnInit(): void {
-    this.options = [null, ...this.options];
+    this.options = [{ label: null, value: null }, ...this.options];
   }
+
+  filter() {}
 }

@@ -51,12 +51,12 @@
           <select formControlName="status" id="inputStatus" class="form-control">
             <option
               *ngFor="let status of statusSelect"
-              value="{{ status }}"
-              id="{{ 'select' + status }}"
+              value="{{ status.value }}"
+              id="{{ 'select' + status.value }}"
               data-toggle="tooltip"
               data-placement="right"
-              [title]="status | titlecase">
-              {{ status }}
+              [title]="status.label | titlecase">
+              {{ status.label }}
             </option>
           </select>
         </div>

@@ -1,8 +1,8 @@
 <header>
   <div class="logo">
-    <i class="fa fa-bars" (click)="navigateToHome()"></i>
+    <i *ngIf="showNav" class="fa fa-bars" (click)="navigateToHome()"></i>
   </div>
-  <nav>
+  <nav *ngIf="showNav">
     <ul class="desktop">
       <li><button class="btn btn-lg btn-danger" (click)="logout()">LOG OUT</button></li>
     </ul>

@@ -7,8 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    router.events.subscribe(event => (this.showNav = this.router.url !== '/login'));
+  }
 
+  showNav: boolean;
   mobileNav: boolean;
 
   ngOnInit(): void {}
@@ -18,7 +21,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    //TODO: destroy user's session/localstorage here
+    localStorage.clear();
     this.router.navigate(['login']);
   }
 }

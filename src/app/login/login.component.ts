@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+    this.loginForm.markAllAsTouched();
     if (this.loginForm.valid) {
       this.onLogin(this.loginForm.value);
     }

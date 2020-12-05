@@ -30,13 +30,13 @@ export class EmployeeManagementComponent implements OnInit {
     this.defaultPaging();
   }
 
-  defaultPaging(page: number = 1) {
+  defaultPaging(page: number = 1, rows: number = 5) {
     const totalData = this.service.getAllEmployee().length;
     this.paging = {
       page,
-      rowPerPage: 5,
+      rowPerPage: rows,
       totalRow: totalData,
-      totalPage: Math.ceil(totalData / 5),
+      totalPage: Math.ceil(totalData / rows),
     };
     this.setPage(this.paging);
   }
@@ -49,7 +49,7 @@ export class EmployeeManagementComponent implements OnInit {
     dialogRef.componentInstance.successSubmit.subscribe((message: string) => {
       dialogRef.close();
       this.snackAlert(SubmitMessage[message]);
-      this.defaultPaging();
+      this.defaultPaging(1, this.paging.rowPerPage);
       this.pageComponent.paging = this.paging;
       this.pageComponent.ngOnInit();
     });

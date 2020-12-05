@@ -9,12 +9,14 @@ import { EmployeeManagementComponent } from './employee-management.component';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { EmployeeManagementService } from './employee-management.service';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
     EmployeeManagementComponent,
     EmployeeManagementFormComponent,
     PaginationComponent,
+    FilterComponent,
   ],
   imports: [
     CommonModule,

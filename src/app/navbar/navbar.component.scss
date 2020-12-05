@@ -11,6 +11,10 @@ header {
   color: var(--palette-Y);
 }
 
+nav, .logo {
+  min-width: 15%;
+}
+
 .logo {
   margin: 0;
   padding: 0;

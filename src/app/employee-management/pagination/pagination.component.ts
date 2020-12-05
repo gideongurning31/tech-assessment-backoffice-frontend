@@ -14,9 +14,14 @@ export class PaginationComponent implements OnInit {
   pages: Array<number> = [];
 
   ngOnInit() {
-    this.pages = [];
     this.rows = this.paging.rowPerPage;
-    for (let i = 0; i <= this.paging.totalPage; i++) {
+    this.generateButtons();
+  }
+
+  generateButtons() {
+    this.pages = [];
+    this.paging.totalPage = Math.ceil(this.paging.totalRow / this.rows);
+    for (let i = 0; i < this.paging.totalPage; i++) {
       this.pages.push(i + 1);
     }
   }
@@ -32,6 +37,7 @@ export class PaginationComponent implements OnInit {
     this.paging.rowPerPage = this.rows;
     this.paging.page = 1;
     this.setPage.emit(this.paging);
+    this.generateButtons();
   }
 }
 

@@ -45,6 +45,7 @@ export class EmployeeManagementComponent implements OnInit {
   clearFilter() {
     this.dataTable = dummyData;
     this.filterComponent.initFilterForm();
+    this.setPage(this.paging);
   }
 
   applyFilter(filter: FilterObject) {

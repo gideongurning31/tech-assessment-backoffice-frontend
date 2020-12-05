@@ -47,15 +47,11 @@ export class FilterComponent implements OnInit {
 
   onApplyFilter() {
     const filter = this.filterForm.value;
-    const filterObject = {};
-    if (filter.key1 && filter.value1) {
-      filterObject[filter.key1] = filter.value1;
+    if (!this.sanitize(filter.key2) || !this.sanitize(filter.value2)) {
+      delete filter.key2;
+      delete filter.value2;
     }
-
-    if (filter.key2 && filter.value2) {
-      filterObject[filter.key2] = filter.value2;
-    }
-    this.applyFilter.emit(filterObject);
+    this.applyFilter.emit(filter);
   }
 
   private sanitize(value: any) {

@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PaginationComponent implements OnInit {
   constructor() {}
 
-  @Output() setPage: EventEmitter<number> = new EventEmitter();
+  @Output() setPage: EventEmitter<Paging> = new EventEmitter();
   @Input() paging: Paging;
   rows: number;
   pages: Array<number> = [];
@@ -23,13 +23,15 @@ export class PaginationComponent implements OnInit {
 
   onPageClick(page: number) {
     if (page > 0 && page !== this.paging.page) {
-      this.setPage.emit(page);
+      this.paging.page = page;
+      this.setPage.emit(this.paging);
     }
   }
 
-  setTotalRow() {
+  onSetRows() {
     this.paging.rowPerPage = this.rows;
-    this.onPageClick(1);
+    this.paging.page = 1;
+    this.setPage.emit(this.paging);
   }
 }
 

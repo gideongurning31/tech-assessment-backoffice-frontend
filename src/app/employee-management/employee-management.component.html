@@ -52,7 +52,7 @@
     <p class="no-data">No data to display.</p>
   </ng-template>
   <div class="row btn-container">
-    <app-pagination *ngIf="dataTable && dataTable.length > 0 && paging.totalRow > paging.rowPerPage" [paging]="paging" (setPage)="setPage($event)"></app-pagination>
+    <app-pagination *ngIf="dataTable && dataTable.length > 0 && paging.totalRow >= paging.rowPerPage" [paging]="paging" (setPage)="setPage($event)"></app-pagination>
     <button
       class="btn btn-success"
       [ngClass]="dataTable && dataTable.length > 0

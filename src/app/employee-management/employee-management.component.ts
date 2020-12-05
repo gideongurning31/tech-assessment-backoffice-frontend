@@ -21,11 +21,10 @@ export class EmployeeManagementComponent implements OnInit {
   paging: Paging;
 
   ngOnInit() {
-    this.setPaging();
-    this.setDataTable();
+    this.defaultPaging();
   }
 
-  setPaging(page: number = 1) {
+  defaultPaging(page: number = 1) {
     const totalData = dummyData.length;
     this.paging = {
       page,
@@ -33,10 +32,7 @@ export class EmployeeManagementComponent implements OnInit {
       totalRow: totalData,
       totalPage: Math.ceil(totalData / 5),
     };
-  }
-
-  setDataTable() {
-    this.dataTable = dummyData;
+    this.setPage(this.paging);
   }
 
   openForm(action: string, employee?: Employee) {
@@ -59,7 +55,14 @@ export class EmployeeManagementComponent implements OnInit {
     });
   }
 
-  setPage(page: number) {}
+  setPage(paging: Paging) {
+    this.dataTable = [];
+    this.paging = paging;
+    console.log(paging);
+    for (let i = 0; i < this.paging.rowPerPage; i++) {
+      this.dataTable.push(dummyData[i]);
+    }
+  }
 }
 
 enum ActionType {

@@ -1,4 +1,4 @@
-<form class="filter-form" [formGroup]="filterForm" (ngSubmit)="applyFilter()">
+<form class="filter-form" [formGroup]="filterForm" (ngSubmit)="onApplyFilter()">
   <div class="filter-form-el1">
     <div class="form-group filter-key">
       <select id="filterKey1" class="form-control" formControlName="key1" (ngModelChange)="onSelectKey(1)">
@@ -8,11 +8,7 @@
       </select>
     </div>
     <div class="form-group filter-input">
-      <input type="text"
-        id="filterValue1"
-        class="form-control"
-        formControlName="value1"
-        placeholder="filter 1 value">
+      <input type="{{ type1 }}" id="filterValue1" class="form-control" formControlName="value1">
     </div>
   </div>
 
@@ -25,11 +21,7 @@
       </select>
     </div>
     <div class="form-group filter-input">
-      <input type="text"
-        id="filterValue1"
-        class="form-control"
-        formControlName="value2"
-        placeholder="filter 1 value">
+      <input type="{{ type2 }}" id="filterValue1" class="form-control" formControlName="value2">
     </div>
   </div>
 

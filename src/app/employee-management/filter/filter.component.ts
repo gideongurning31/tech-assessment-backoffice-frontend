@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LabelValue } from 'src/app/common/label-value.model';
 
@@ -10,9 +10,11 @@ import { LabelValue } from 'src/app/common/label-value.model';
 export class FilterComponent implements OnInit {
   constructor() {}
 
+  @Output() applyFilter: EventEmitter<any> = new EventEmitter();
   options: Array<LabelValue>;
-
   filterForm: FormGroup;
+  type1: string;
+  type2: string;
 
   ngOnInit() {
     this.options = FILTER_SELECT;
@@ -20,6 +22,8 @@ export class FilterComponent implements OnInit {
   }
 
   initFilterForm() {
+    this.type1 = 'text';
+    this.type2 = 'text';
     this.filterForm = new FormGroup({
       key1: new FormControl('', Validators.required),
       value1: new FormControl(null, Validators.required),
@@ -33,13 +37,25 @@ export class FilterComponent implements OnInit {
   onSelectKey(i: number) {
     if (this.sanitize(this.filterForm.controls['key' + i].value)) {
       this.filterForm.controls['value' + i].enable();
+      this['type' + i] = FilterType[this.filterForm.controls['key' + i].value] || 'text';
     } else {
       this.filterForm.controls['value' + i].disable();
+      this['type' + i] = 'text';
     }
+    this.filterForm.controls['value' + i].reset();
   }
 
-  applyFilter() {
-    console.log(this.filterForm.value);
+  onApplyFilter() {
+    const filter = this.filterForm.value;
+    const filterObject = {};
+    if (filter.key1 && filter.value1) {
+      filterObject[filter.key1] = filter.value1;
+    }
+
+    if (filter.key2 && filter.value2) {
+      filterObject[filter.key2] = filter.value2;
+    }
+    this.applyFilter.emit(filterObject);
   }
 
   private sanitize(value: any) {
@@ -56,9 +72,15 @@ const FILTER_SELECT = [
   { label: 'Username', value: 'username' },
   { label: 'First Name', value: 'firstName' },
   { label: 'Last Name', value: 'lastName' },
-  { label: 'Email', value: 'Email' },
+  { label: 'Email', value: 'email' },
   { label: 'Birth Date', value: 'birthDate' },
   { label: 'Basic Salary', value: 'basicSalary' },
   { label: 'Status', value: 'status' },
   { label: 'Group', value: 'group' },
 ];
+
+enum FilterType {
+  email = 'email',
+  birthDate = 'date',
+  basicSalary = 'number',
+}

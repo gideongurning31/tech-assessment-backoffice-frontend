@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
-import { Paging } from './pagination/pagination.component';
+import { FilterComponent } from './filter/filter.component';
+import { PaginationComponent, Paging } from './pagination/pagination.component';
 import { Employee } from './employee.model';
 import { dummyData } from '../dummy-data';
 
@@ -13,6 +14,8 @@ import { dummyData } from '../dummy-data';
 export class EmployeeManagementComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
+  @ViewChild(FilterComponent) filterComponent: FilterComponent;
+  @ViewChild(PaginationComponent) pageComponent: PaginationComponent;
   dataTable: Array<Employee>;
   paging: Paging;
 
@@ -35,6 +38,10 @@ export class EmployeeManagementComponent implements OnInit {
     this.dialog.open(EmployeeManagementFormComponent, {
       data: { employee, action: ActionType[action] },
     });
+  }
+
+  applyFilter(event: any) {
+    console.log(event);
   }
 
   setPage(page: number) {}

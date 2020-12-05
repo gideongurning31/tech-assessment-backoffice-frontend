@@ -58,10 +58,11 @@ export class EmployeeManagementComponent implements OnInit {
   setPage(paging: Paging) {
     this.dataTable = [];
     this.paging = paging;
-    console.log(paging);
-    for (let i = 0; i < this.paging.rowPerPage; i++) {
-      this.dataTable.push(dummyData[i]);
-    }
+    dummyData.forEach((data, i) => {
+      if (i >= (this.paging.page - 1) * this.paging.rowPerPage && i < this.paging.page * this.paging.rowPerPage) {
+        this.dataTable.push(data);
+      }
+    });
   }
 }
 

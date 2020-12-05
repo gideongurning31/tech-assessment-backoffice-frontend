@@ -70,6 +70,8 @@ export class EmployeeManagementFormComponent implements OnInit {
 
     if (this.data.action === 'DELETE') {
       this.form.disable();
+    } else if (this.data.action === 'UPDATE') {
+      this.form.controls.username.disable();
     }
   }
 

@@ -86,7 +86,7 @@ export class EmployeeManagementComponent implements OnInit {
   }
 
   sort(key: string) {
-    console.log('Sort by', key);
+    this.dataTable = this.dataTable.sort(this.dynamicSort(key));
   }
 
   private snackAlert(message: string): void {
@@ -95,6 +95,11 @@ export class EmployeeManagementComponent implements OnInit {
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
     });
+  }
+
+  private dynamicSort(key: string, ascending: boolean = true) {
+    const direction = ascending ? 1 : -1;
+    return (a, b) => (a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0) * direction;
   }
 }
 

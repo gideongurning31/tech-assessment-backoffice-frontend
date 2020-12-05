@@ -4,15 +4,17 @@
     <table class="table table-bordered table-hover">
       <thead class="thead-dark">
         <tr>
-          <th scope="col" style="width: max-content;">#</th>
-          <th scope="col" style="width: max-content;">Username</th>
-          <th scope="col" style="width: max-content;">Name</th>
-          <th scope="col" style="width: max-content;">Email</th>
-          <th scope="col" style="width: max-content;">Birth Date</th>
-          <th scope="col" style="width: max-content;">Basic Salary</th>
-          <th scope="col" style="width: max-content;">Status</th>
-          <th scope="col" style="width: max-content;">Group</th>
-          <th scope="col" style="width: max-content;">Action</th>
+          <th *ngFor="let header of tableHeaders" scope="col" style="width: max-content;">
+            {{ header.label }}
+            <button *ngIf="header.value"
+              class="btn btn-sort"
+              data-toggle="tooltip"
+              data-placement="right"
+              [title]="'Sort by ' + header.label"
+              (click)="sort(header.value)">
+              <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>

@@ -22,6 +22,7 @@ export class EmployeeManagementComponent implements OnInit {
 
   @ViewChild(FilterComponent) filterComponent: FilterComponent;
   @ViewChild(PaginationComponent) pageComponent: PaginationComponent;
+  tableHeaders = TABLE_HEADERS;
   dataTable: Array<Employee>;
   paging: Paging;
   startRow: number;
@@ -84,6 +85,10 @@ export class EmployeeManagementComponent implements OnInit {
     });
   }
 
+  sort(key: string) {
+    console.log('Sort by', key);
+  }
+
   private snackAlert(message: string): void {
     this.snackBar.open(message, 'x', {
       duration: 3000,
@@ -92,6 +97,18 @@ export class EmployeeManagementComponent implements OnInit {
     });
   }
 }
+
+const TABLE_HEADERS = [
+  { label: '#', value: null },
+  { label: 'Username', value: 'username' },
+  { label: 'Name', value: 'firstName' },
+  { label: 'Email', value: 'email' },
+  { label: 'Birth Date', value: 'birthDate' },
+  { label: 'Basic Salary', value: 'basicSalary' },
+  { label: 'Status', value: 'status' },
+  { label: 'Group', value: 'group' },
+  { label: 'Action', value: null },
+];
 
 enum ActionType {
   CREATE = 'CREATE',

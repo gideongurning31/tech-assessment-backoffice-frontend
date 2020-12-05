@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GROUP_SELECT, STATUS_SELECT } from 'src/app/dummy-data';
+import { EmployeeManagementService } from '../employee-management.service';
 import { LabelValue } from 'src/app/common/label-value.model';
 import { Employee } from '../employee.model';
 import * as moment from 'moment';
@@ -18,7 +19,10 @@ const EMAIL_REGEX = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   ],
 })
 export class EmployeeManagementFormComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: EmployeeFormData, private dialogRef: MatDialogRef<EmployeeManagementFormComponent>) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: EmployeeFormData,
+    private dialogRef: MatDialogRef<EmployeeManagementFormComponent>,
+    private service: EmployeeManagementService) {}
 
   title: string;
   form: FormGroup;
@@ -26,6 +30,7 @@ export class EmployeeManagementFormComponent implements OnInit {
   groupSelect: Array<LabelValue>;
   todayDate: string;
   fieldErrors: Array<string>;
+  successSubmit: EventEmitter<boolean> = new EventEmitter();
 
   ngOnInit() {
     this.title = FormHeaders[this.data.action];
@@ -69,8 +74,10 @@ export class EmployeeManagementFormComponent implements OnInit {
   }
 
   checkEmail() {
-    if (this.form.controls.email.errors && this.form.controls.email.errors.pattern && this.fieldErrors.indexOf('emailPattern') === -1) {
-      this.fieldErrors.push('emailPattern');
+    if (this.form.controls.email.errors &&
+      this.form.controls.email.errors.pattern &&
+      this.fieldErrors.indexOf('emailPattern') === -1) {
+        this.fieldErrors.push('emailPattern');
     }
   }
 
@@ -82,7 +89,8 @@ export class EmployeeManagementFormComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
+    this.service.createEmployee(this.form.value);
+    this.successSubmit.emit(true);
   }
 
   cancel() {

@@ -37,8 +37,13 @@ export class EmployeeManagementComponent implements OnInit {
   }
 
   openForm(action: string, employee?: Employee) {
-    this.dialog.open(EmployeeManagementFormComponent, {
+    const dialogRef = this.dialog.open(EmployeeManagementFormComponent, {
       data: { employee, action: ActionType[action] },
+    });
+
+    dialogRef.componentInstance.successSubmit.subscribe((success?: boolean) => {
+      dialogRef.close();
+      this.defaultPaging();
     });
   }
 

@@ -30,6 +30,9 @@
       <button type="submit" class="btn btn-primary" [disabled]="filterForm.invalid">
         <i class="fa fa-filter"></i>&nbsp;Apply Filter
       </button>
+      <button type="button" class="btn btn-warning" (click)="clearFilter.emit()" style="margin-left: 10px;">
+        <i class="fa fa-times"></i>&nbsp;Clear Filter
+      </button>
     </div>
   </div>
 </form>

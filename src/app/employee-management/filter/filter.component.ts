@@ -10,7 +10,8 @@ import { LabelValue } from 'src/app/common/label-value.model';
 export class FilterComponent implements OnInit {
   constructor() {}
 
-  @Output() applyFilter: EventEmitter<any> = new EventEmitter();
+  @Output() applyFilter: EventEmitter<FilterObject> = new EventEmitter();
+  @Output() clearFilter: EventEmitter<void> = new EventEmitter();
   options: Array<LabelValue>;
   filterForm: FormGroup;
   type1: string;
@@ -61,6 +62,13 @@ export class FilterComponent implements OnInit {
       return value;
     }
   }
+}
+
+export interface FilterObject {
+  key1: string;
+  value1: any;
+  key2?: string;
+  value2?: any;
 }
 
 const FILTER_SELECT = [

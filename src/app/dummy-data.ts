@@ -120,6 +120,17 @@ export const dummyData = [
     description: 'Amnesia',
   },
   {
+    username: 'strongest.avenger',
+    firstName: 'Bruce',
+    lastName: 'Banner',
+    email: 'always.angry@outlook.com',
+    birthDate: new Date(-1209600 * 1000),
+    basicSalary: 50500,
+    status: '01',
+    group: 'AVENGERS',
+    description: 'The Incredible Hulk',
+  },
+  {
     username: 'mulan.hua',
     firstName: 'Hua',
     lastName: 'Mulan',

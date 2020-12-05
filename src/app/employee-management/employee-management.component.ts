@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
-import { FilterComponent } from './filter/filter.component';
+import { FilterComponent, FilterObject } from './filter/filter.component';
 import { PaginationComponent, Paging } from './pagination/pagination.component';
 import { Employee } from './employee.model';
 import { dummyData } from '../dummy-data';
@@ -40,8 +40,19 @@ export class EmployeeManagementComponent implements OnInit {
     });
   }
 
-  applyFilter(event: any) {
-    console.log(event);
+  clearFilter() {
+    this.dataTable = dummyData;
+    this.filterComponent.initFilterForm();
+  }
+
+  applyFilter(filter: FilterObject) {
+    this.dataTable = [];
+    dummyData.forEach((data) => {
+      if ((!filter.key2 && data[filter.key1] === filter.value1) ||
+      (filter.key2 && data[filter.key2] === filter.value2 && data[filter.key1] === filter.value1)) {
+        this.dataTable.push(data);
+      }
+    });
   }
 
   setPage(page: number) {}

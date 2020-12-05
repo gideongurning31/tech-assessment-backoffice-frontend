@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EmployeeManagementRoutingModule } from './employee-management-routing.module';
 import { EmployeeManagementComponent } from './employee-management.component';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';

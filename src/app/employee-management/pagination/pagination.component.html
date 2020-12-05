@@ -1,4 +1,23 @@
-<nav>
+<nav class="pagination-container">
+  <div class="page-item" style="margin-right: 25px;">
+    <form class="form-inline">
+      <span class="paging-text">Showing:&emsp;</span>
+      <div class="input-group" style="max-width: 100px;">
+        <input type="number"
+          min="1" max="{{ paging.totalRow }}"
+          class="form-control"
+          name="rows"
+          [(ngModel)]="rows">
+        <div class="input-group-append">
+          <button class="btn btn-warning" type="button">
+            <i class="fa fa-refresh"></i>
+          </button>
+        </div>
+      </div>
+      <span class="paging-text">&emsp;data from {{ paging.totalRow }} total data</span>
+    </form>
+  </div>
+
   <ul class="pagination">
     <li class="page-item" *ngIf="paging.page > 1">
       <a class="page-link" aria-label="Previous" (click)="onPageClick(paging.page - 1)">

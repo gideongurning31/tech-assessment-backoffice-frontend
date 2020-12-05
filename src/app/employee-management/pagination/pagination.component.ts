@@ -10,10 +10,12 @@ export class PaginationComponent implements OnInit {
 
   @Output() setPage: EventEmitter<number> = new EventEmitter();
   @Input() paging: Paging;
+  rows: number;
   pages: Array<number> = [];
 
   ngOnInit() {
     this.pages = [];
+    this.rows = this.paging.rowPerPage;
     for (let i = 0; i <= this.paging.totalPage; i++) {
       this.pages.push(i + 1);
     }
@@ -23,6 +25,11 @@ export class PaginationComponent implements OnInit {
     if (page > 0 && page !== this.paging.page) {
       this.setPage.emit(page);
     }
+  }
+
+  setTotalRow() {
+    this.paging.rowPerPage = this.rows;
+    this.onPageClick(1);
   }
 }
 

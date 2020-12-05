@@ -21,18 +21,22 @@ export class EmployeeManagementComponent implements OnInit {
   paging: Paging;
 
   ngOnInit() {
-    this.dataTable = dummyData;
     this.setPaging();
+    this.setDataTable();
   }
 
   setPaging(page: number = 1) {
-    const totalData = this.dataTable.length;
+    const totalData = dummyData.length;
     this.paging = {
       page,
       rowPerPage: 5,
       totalRow: totalData,
       totalPage: Math.ceil(totalData / 5),
     };
+  }
+
+  setDataTable() {
+    this.dataTable = dummyData;
   }
 
   openForm(action: string, employee?: Employee) {

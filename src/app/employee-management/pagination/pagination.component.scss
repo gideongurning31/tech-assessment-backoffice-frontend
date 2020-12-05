@@ -1,3 +1,11 @@
+ul, li {
+  list-style: none;
+}
+
+.pagination-container {
+  display: flex;
+}
+
 .page-link {
   cursor: pointer;
   color: var(--palette-Y);

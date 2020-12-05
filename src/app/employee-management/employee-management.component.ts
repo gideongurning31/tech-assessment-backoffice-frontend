@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
 import { FilterComponent, FilterObject } from './filter/filter.component';
 import { PaginationComponent, Paging } from './pagination/pagination.component';
@@ -13,7 +14,11 @@ import { Employee } from './employee.model';
   styleUrls: ['employee-management.component.scss'],
 })
 export class EmployeeManagementComponent implements OnInit {
-  constructor(private dialog: MatDialog, private service: EmployeeManagementService, private filterHelper: FilterHelper) {}
+  constructor(
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private service: EmployeeManagementService,
+    private filterHelper: FilterHelper) {}
 
   @ViewChild(FilterComponent) filterComponent: FilterComponent;
   @ViewChild(PaginationComponent) pageComponent: PaginationComponent;
@@ -41,9 +46,9 @@ export class EmployeeManagementComponent implements OnInit {
       data: { employee, action: ActionType[action] },
     });
 
-    dialogRef.componentInstance.successSubmit.subscribe((success?: boolean) => {
+    dialogRef.componentInstance.successSubmit.subscribe((message: string) => {
       dialogRef.close();
-      this.defaultPaging();
+      this.snackAlert(SubmitMessage[message]);
     });
   }
 
@@ -75,10 +80,24 @@ export class EmployeeManagementComponent implements OnInit {
       }
     });
   }
+
+  private snackAlert(message: string): void {
+    this.snackBar.open(message, 'x', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
+  }
 }
 
 enum ActionType {
   CREATE = 'CREATE',
   UPDATE = 'UPDATE',
   DELETE = 'DELETE',
+}
+
+enum SubmitMessage {
+  CREATE = 'New employee data has been added.',
+  UPDATE = 'Employee data has been updated.',
+  DELETE = 'Employee data has been deleted.'
 }

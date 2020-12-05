@@ -30,7 +30,7 @@ export class EmployeeManagementFormComponent implements OnInit {
   groupSelect: Array<LabelValue>;
   todayDate: string;
   fieldErrors: Array<string>;
-  successSubmit: EventEmitter<boolean> = new EventEmitter();
+  successSubmit: EventEmitter<string> = new EventEmitter();
 
   ngOnInit() {
     this.title = FormHeaders[this.data.action];
@@ -94,7 +94,7 @@ export class EmployeeManagementFormComponent implements OnInit {
       case 'UPDATE': this.service.editEmployee(this.form.value.username, this.form.value); break;
       case 'DELETE': this.service.deleteEmployee(this.form.value.username); break;
     }
-    this.successSubmit.emit(true);
+    this.successSubmit.emit(this.data.action);
   }
 
   cancel() {

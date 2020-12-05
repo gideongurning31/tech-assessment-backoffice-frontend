@@ -8,8 +8,9 @@ import { EmployeeManagementRoutingModule } from './employee-management-routing.m
 import { EmployeeManagementComponent } from './employee-management.component';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
 import { PaginationComponent } from './pagination/pagination.component';
-import { EmployeeManagementService } from './employee-management.service';
 import { FilterComponent } from './filter/filter.component';
+import { EmployeeManagementService } from './employee-management.service';
+import { FilterHelper } from './filter/filter-helper.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,6 @@ import { FilterComponent } from './filter/filter.component';
     EmployeeManagementRoutingModule,
   ],
   entryComponents: [EmployeeManagementFormComponent],
-  providers: [EmployeeManagementService],
+  providers: [EmployeeManagementService, FilterHelper],
 })
 export class EmployeeManagementModule {}

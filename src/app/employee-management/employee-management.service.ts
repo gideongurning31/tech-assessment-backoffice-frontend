@@ -24,10 +24,10 @@ export class EmployeeManagementService {
     data.forEach((item: Employee, i: number) => {
       if (item.username === id) {
         data[i] = payload;
-        localStorage.setItem('data', JSON.stringify(data));
         return;
       }
     });
+    localStorage.setItem('data', JSON.stringify(data));
   }
 
   deleteEmployee(id: string) {
@@ -36,9 +36,9 @@ export class EmployeeManagementService {
     data.forEach((item: Employee) => {
       if (item.username === id) {
         data.splice(data.indexOf(item), 1);
-        localStorage.setItem('data', JSON.stringify(data));
         return;
       }
     });
+    localStorage.setItem('data', JSON.stringify(data));
   }
 }

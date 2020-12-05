@@ -49,6 +49,9 @@ export class EmployeeManagementComponent implements OnInit {
     dialogRef.componentInstance.successSubmit.subscribe((message: string) => {
       dialogRef.close();
       this.snackAlert(SubmitMessage[message]);
+      this.defaultPaging();
+      this.pageComponent.paging = this.paging;
+      this.pageComponent.ngOnInit();
     });
   }
 

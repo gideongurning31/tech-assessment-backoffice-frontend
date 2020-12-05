@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5 {
 }
 
 
-input:disabled, select:disabled, button:disabled {
+input:disabled, select:disabled, textarea:disabled, button:disabled {
   cursor: not-allowed;
 }
 

@@ -7,10 +7,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmployeeManagementRoutingModule } from './employee-management-routing.module';
 import { EmployeeManagementComponent } from './employee-management.component';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
+import { PaginationComponent } from './pagination/pagination.component';
 import { EmployeeManagementService } from './employee-management.service';
 
 @NgModule({
-  declarations: [EmployeeManagementComponent, EmployeeManagementFormComponent],
+  declarations: [
+    EmployeeManagementComponent,
+    EmployeeManagementFormComponent,
+    PaginationComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,

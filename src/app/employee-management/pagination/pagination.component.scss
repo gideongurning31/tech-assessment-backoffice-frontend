@@ -1,0 +1,17 @@
+.page-link {
+  cursor: pointer;
+  color: var(--palette-Y);
+  background-color: var(--palette-B1);
+}
+
+.page-link:hover {
+  color: var(--palette-G);
+  background-color: var(--palette-B2);
+}
+
+.current-page, .current-page:hover {
+  cursor: not-allowed;
+  color: var(--palette-B1);
+  background-color: var(--palette-G);
+  font-weight: bold;
+}

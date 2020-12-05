@@ -13,14 +13,32 @@ export class EmployeeManagementService {
     return JSON.parse(data);
   }
 
-  getEmployeeById(id: string) {}
-
   createEmployee(payload: Employee) {
     const data = [payload, ...JSON.parse(localStorage.getItem('data'))];
     localStorage.setItem('data', JSON.stringify(data));
   }
 
-  editEmployee(id: string, payload: any) {}
+  editEmployee(id: string, payload: Employee) {
+    const data = JSON.parse(localStorage.getItem('data'));
+    localStorage.removeItem('data');
+    data.forEach((item: Employee, i: number) => {
+      if (item.username === id) {
+        data[i] = payload;
+        localStorage.setItem('data', JSON.stringify(data));
+        return;
+      }
+    });
+  }
 
-  deleteEmployee(id: string) {}
+  deleteEmployee(id: string) {
+    const data = JSON.parse(localStorage.getItem('data'));
+    localStorage.removeItem('data');
+    data.forEach((item: Employee) => {
+      if (item.username === id) {
+        data.splice(data.indexOf(item), 1);
+        localStorage.setItem('data', JSON.stringify(data));
+        return;
+      }
+    });
+  }
 }

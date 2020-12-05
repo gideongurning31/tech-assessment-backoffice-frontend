@@ -89,7 +89,11 @@ export class EmployeeManagementFormComponent implements OnInit {
   }
 
   submit() {
-    this.service.createEmployee(this.form.value);
+    switch (this.data.action) {
+      case 'CREATE': this.service.createEmployee(this.form.value); break;
+      case 'UPDATE': this.service.editEmployee(this.form.value.username, this.form.value); break;
+      case 'DELETE': this.service.deleteEmployee(this.form.value.username); break;
+    }
     this.successSubmit.emit(true);
   }
 

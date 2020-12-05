@@ -19,6 +19,7 @@ export class EmployeeManagementComponent implements OnInit {
   @ViewChild(PaginationComponent) pageComponent: PaginationComponent;
   dataTable: Array<Employee>;
   paging: Paging;
+  startRow: number;
 
   ngOnInit() {
     this.defaultPaging();
@@ -63,6 +64,7 @@ export class EmployeeManagementComponent implements OnInit {
         this.dataTable.push(data);
       }
     });
+    this.startRow = dummyData.indexOf(this.dataTable[0]);
   }
 }
 

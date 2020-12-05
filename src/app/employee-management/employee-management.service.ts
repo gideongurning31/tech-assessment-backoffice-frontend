@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpUtilService } from '../common/http-util.service';
+import { Employee } from './employee.model';
 
 @Injectable()
 export class EmployeeManagementService {
-  constructor(private http: HttpUtilService) {}
+  constructor() {}
 
-  getAllEmployee() {
-    return this.http.get('/api/employee');
+  getAllEmployee(): Array<Employee> {
+    const data = localStorage.getItem('data');
+    if (!data) {
+      return [];
+    }
+    return JSON.parse(data);
   }
 
-  getEmployeeById(id: string) {
-    return this.http.get('/api/employee/' + id);
+  getEmployeeById(id: string) {}
+
+  createEmployee(payload: Employee) {
+    const data = [payload, ...JSON.parse(localStorage.getItem('data'))];
+    localStorage.setItem('data', JSON.stringify(data));
   }
 
-  createEmployee(payload: any) {
-    return this.http.post('/api/employee', payload);
-  }
+  editEmployee(id: string, payload: any) {}
 
-  editEmployee(id: string, payload: any) {
-    return this.http.post('/api/employee/' + id, payload);
-  }
-
-  deleteEmployee(id: string) {
-    return this.http.delete('/api/employee/' + id);
-  }
+  deleteEmployee(id: string) {}
 }

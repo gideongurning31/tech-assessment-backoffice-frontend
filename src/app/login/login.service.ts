@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { dummyData } from '../dummy-data';
 
 @Injectable()
 export class LoginService {
-  constructor(private route: Router) {}
+  constructor() {}
 
   dummyUser = { username: 'user', password: 'pass123' };
 
@@ -25,6 +25,7 @@ export class LoginService {
   private setUserSession(): void {
     localStorage.clear();
     localStorage.setItem('session', 'localSession');
+    localStorage.setItem('data', JSON.stringify(dummyData));
   }
 }
 

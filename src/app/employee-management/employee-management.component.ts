@@ -26,6 +26,7 @@ export class EmployeeManagementComponent implements OnInit {
   dataTable: Array<Employee>;
   paging: Paging;
   startRow: number;
+  currentSort = { key: null, ascending: true };
 
   ngOnInit() {
     this.defaultPaging();
@@ -86,6 +87,12 @@ export class EmployeeManagementComponent implements OnInit {
   }
 
   sort(key: string) {
+    if (this.currentSort.key === key) {
+      this.currentSort.ascending = !this.currentSort.ascending;
+    } else {
+      this.currentSort.ascending = true;
+    }
+    this.currentSort.key = key;
     this.dataTable = this.dataTable.sort(this.dynamicSort(key));
   }
 
@@ -97,8 +104,8 @@ export class EmployeeManagementComponent implements OnInit {
     });
   }
 
-  private dynamicSort(key: string, ascending: boolean = true) {
-    const direction = ascending ? 1 : -1;
+  private dynamicSort(key: string) {
+    const direction = this.currentSort.ascending ? 1 : -1;
     return (a, b) => (a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0) * direction;
   }
 }

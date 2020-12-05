@@ -2,7 +2,10 @@
   <div class="filter-form-el1">
     <div class="form-group filter-key">
       <select id="filterKey1" class="form-control" formControlName="key1" (ngModelChange)="onSelectKey(1)">
-        <option *ngFor="let opt of options" value="{{ opt.value }}" id="{{ 'filter' + opt.value }}">
+        <option *ngFor="let opt of options"
+          value="{{ opt.value }}"
+          id="{{ 'filter' + opt.value }}"
+          [disabled]="sanitize(filterForm.controls.key2.value) && filterForm.controls.key2.value === opt.value">
           {{ opt.label }}:
         </option>
       </select>
@@ -15,7 +18,10 @@
   <div class="filter-form-el1">
     <div class="form-group filter-key">
       <select id="filterKey1" class="form-control" formControlName="key2" (ngModelChange)="onSelectKey(2)">
-        <option *ngFor="let opt of options" value="{{ opt.value }}" id="{{ 'filter' + opt.value }}">
+        <option *ngFor="let opt of options"
+          value="{{ opt.value }}"
+          id="{{ 'filter' + opt.value }}"
+          [disabled]="sanitize(filterForm.controls.key1.value) && filterForm.controls.key1.value === opt.value">
           {{ opt.label }}:
         </option>
       </select>

@@ -55,7 +55,7 @@ export class FilterComponent implements OnInit {
     this.applyFilter.emit(filter);
   }
 
-  private sanitize(value: any) {
+  sanitize(value: any) {
     if (value === '' || value === [] || value === {}) {
       return null;
     } else {

@@ -10,3 +10,15 @@ table {
 td, th {
   width: 25%;
 }
+
+.mat-column-email {
+  width: 20%;
+}
+
+.mat-column-username, .mat-column-basicSalary {
+  width: 15%;
+}
+
+.mat-column-firstName, .mat-column-lastName, .mat-column-birthDate, .mat-column-status, .mat-column-group {
+  width: 10%;
+}

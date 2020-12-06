@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { dummyData } from '../dummy-data';
+import { dummyData2 } from '../dummy-data2';
 
 @Injectable()
 export class LoginService {
@@ -25,7 +26,7 @@ export class LoginService {
   private setUserSession(): void {
     localStorage.clear();
     localStorage.setItem('session', 'localSession');
-    localStorage.setItem('data', JSON.stringify(dummyData));
+    localStorage.setItem('data', JSON.stringify([...dummyData, ...dummyData2]));
   }
 }
 

@@ -32,7 +32,7 @@ export class EmployeeManagementComponent implements OnInit {
     this.defaultPaging();
   }
 
-  defaultPaging(page: number = 1, rows: number = 5) {
+  defaultPaging(page: number = 1, rows: number = 10) {
     const totalData = this.service.getAllEmployee().length;
     this.paging = {
       page,
@@ -94,6 +94,10 @@ export class EmployeeManagementComponent implements OnInit {
     }
     this.currentSort.key = key;
     this.dataTable = this.dataTable.sort(this.dynamicSort(key));
+  }
+
+  parseDate(dtString: string) {
+    return new Date(+dtString);
   }
 
   private snackAlert(message: string): void {

@@ -23,7 +23,7 @@
           <td>{{ data.username }}</td>
           <td>{{ data.firstName + ' ' + data.lastName }}</td>
           <td>{{ data.email }}</td>
-          <td>{{ data.birthDate | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ parseDate(data.birthDate) | date: 'dd/MM/yyyy' }}</td>
           <td>{{ data.basicSalary | currency: 'IDR': 'Rp. ': '0.0-0' }}</td>
           <td>{{ data.status }}</td>
           <td>{{ data.group }}</td>

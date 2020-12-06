@@ -6,6 +6,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { EmployeeManagementRoutingModule } from './employee-management-routing.module';
 import { EmployeeManagementComponent } from './employee-management.component';
@@ -33,6 +34,7 @@ import { FilterHelper } from './filter/filter-helper.service';
     MatSnackBarModule,
     MatTableModule,
     MatFormFieldModule,
+    MatInputModule,
     MatPaginatorModule,
     EmployeeManagementRoutingModule,
   ],

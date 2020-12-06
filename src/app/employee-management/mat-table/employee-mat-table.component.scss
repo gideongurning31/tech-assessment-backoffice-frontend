@@ -15,10 +15,22 @@ td, th {
   width: 20%;
 }
 
-.mat-column-username, .mat-column-basicSalary {
+.mat-column-username,
+.mat-column-basicSalary {
   width: 15%;
 }
 
-.mat-column-firstName, .mat-column-lastName, .mat-column-birthDate, .mat-column-status, .mat-column-group {
+.mat-column-firstName,
+.mat-column-lastName,
+.mat-column-birthDate,
+.mat-column-status,
+.mat-column-group {
   width: 10%;
+}
+
+::ng-deep .mat-focused .mat-form-field-label,
+::ng-deep.mat-form-field-underline,
+::ng-deep.mat-form-field-ripple,
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+  color: var(--palette-B1) !important;
 }

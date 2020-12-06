@@ -27,6 +27,7 @@ export class EmployeeManagementComponent implements OnInit {
   paging: Paging;
   startRow: number;
   currentSort = { key: null, ascending: true };
+  matTable = false;
 
   ngOnInit() {
     this.defaultPaging();

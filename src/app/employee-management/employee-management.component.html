@@ -1,60 +1,65 @@
 <div class="container" style="margin-top: 25px;">
-  <app-filter (applyFilter)="applyFilter($event)" (clearFilter)="clearFilter()"></app-filter>
+  <app-filter *ngIf="!matTable" (applyFilter)="applyFilter($event)" (clearFilter)="clearFilter()"></app-filter>
   <div class="row" *ngIf="dataTable && dataTable.length > 0; else noData">
-    <table class="table table-bordered table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <th *ngFor="let header of tableHeaders" scope="col" style="width: max-content;">
-            {{ header.label }}
-            <button *ngIf="header.value"
-              class="btn btn-sort"
-              data-toggle="tooltip"
-              data-placement="right"
-              [title]="'Sort by ' + header.label"
-              (click)="sort(header.value)">
-              <i class="fa" [ngClass]="currentSort.key === header.value && currentSort.ascending ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-            </button>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of dataTable; let i = index">
-          <td><strong>{{ startRow + i + 1 }}</strong></td>
-          <td>{{ data.username }}</td>
-          <td>{{ data.firstName + ' ' + data.lastName }}</td>
-          <td>{{ data.email }}</td>
-          <td>{{ parseDate(data.birthDate) | date: 'dd/MM/yyyy' }}</td>
-          <td>{{ data.basicSalary | currency: 'IDR': 'Rp. ': '0.0-0' }}</td>
-          <td>{{ data.status }}</td>
-          <td>{{ data.group }}</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-warning btn-table"
-              matTooltip="View/change employee data"
-              matTooltipPosition="below"
-              (click)="openForm('UPDATE', data)">
-              <i class="fa fa-pencil-square-o"></i>
-            </button>
-            &nbsp;|&nbsp;
-            <button
-              type="button"
-              class="btn btn-danger btn-table"
-              matTooltip="Remove/delete employee data"
-              matTooltipPosition="below"
-              (click)="openForm('DELETE', data)">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <ng-container *ngIf="matTable; else defaultTable">
+      <app-employee-table></app-employee-table>
+    </ng-container>
+    <ng-template #defaultTable>
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th *ngFor="let header of tableHeaders" scope="col" style="width: max-content;">
+              {{ header.label }}
+              <button *ngIf="header.value"
+                class="btn btn-sort"
+                data-toggle="tooltip"
+                data-placement="right"
+                [title]="'Sort by ' + header.label"
+                (click)="sort(header.value)">
+                <i class="fa" [ngClass]="currentSort.key === header.value && currentSort.ascending ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of dataTable; let i = index">
+            <td><strong>{{ startRow + i + 1 }}</strong></td>
+            <td>{{ data.username }}</td>
+            <td>{{ data.firstName + ' ' + data.lastName }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ parseDate(data.birthDate) | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ data.basicSalary | currency: 'IDR': 'Rp. ': '0.0-0' }}</td>
+            <td>{{ data.status }}</td>
+            <td>{{ data.group }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-warning btn-table"
+                matTooltip="View/change employee data"
+                matTooltipPosition="below"
+                (click)="openForm('UPDATE', data)">
+                <i class="fa fa-pencil-square-o"></i>
+              </button>
+              &nbsp;|&nbsp;
+              <button
+                type="button"
+                class="btn btn-danger btn-table"
+                matTooltip="Remove/delete employee data"
+                matTooltipPosition="below"
+                (click)="openForm('DELETE', data)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
   </div>
   <ng-template #noData>
     <p class="no-data">No data to display.</p>
   </ng-template>
   <div class="row btn-container">
-    <app-pagination *ngIf="dataTable && dataTable.length > 0 && paging.totalRow >= paging.rowPerPage" [paging]="paging" (setPage)="setPage($event)"></app-pagination>
+    <app-pagination *ngIf="!matTable && dataTable && dataTable.length > 0 && paging.totalRow >= paging.rowPerPage" [paging]="paging" (setPage)="setPage($event)"></app-pagination>
     <button
       class="btn btn-success"
       [ngClass]="dataTable && dataTable.length > 0

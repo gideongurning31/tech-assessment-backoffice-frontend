@@ -2,24 +2,24 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { EmployeeManagementService } from '../employee-management.service';
 import { Employee } from '../employee.model';
 
 @Component({
   selector: 'app-employee-table',
   templateUrl: 'employee-mat-table.component.html',
-  styleUrls: [
-    '../employee-management.component.scss',
-    'employee-mat-table.component.scss',
-  ],
+  styleUrls: ['employee-mat-table.component.scss'],
 })
 export class EmployeeMatTableComponent implements OnInit, AfterViewInit {
-  constructor() {}
-
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<Employee>;
+  constructor(private employeeService: EmployeeManagementService) {
+    const employee = employeeService.getAllEmployee();
+    this.dataSource = new MatTableDataSource(employee);
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  displayedColumns: Array<string> = ['username', 'firstName', 'lastName', 'email', 'birthDate', 'basicSalary', 'status', 'group'];
+  dataSource: MatTableDataSource<Employee>;
 
   ngOnInit() {}
 
@@ -35,5 +35,4 @@ export class EmployeeMatTableComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }

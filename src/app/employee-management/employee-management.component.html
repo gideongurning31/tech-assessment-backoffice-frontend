@@ -1,10 +1,11 @@
 <div class="container" style="margin-top: 25px;">
-  <app-filter *ngIf="!matTable" (applyFilter)="applyFilter($event)" (clearFilter)="clearFilter()"></app-filter>
-  <div class="row" *ngIf="dataTable && dataTable.length > 0; else noData">
-    <ng-container *ngIf="matTable; else defaultTable">
-      <app-employee-table></app-employee-table>
-    </ng-container>
-    <ng-template #defaultTable>
+  <ng-container *ngIf="matTable; else defaultTable">
+    <app-employee-table></app-employee-table>
+  </ng-container>
+
+  <ng-template #defaultTable>
+    <app-filter *ngIf="!matTable" (applyFilter)="applyFilter($event)" (clearFilter)="clearFilter()"></app-filter>
+    <div class="row" *ngIf="dataTable && dataTable.length > 0; else noData">
       <table class="table table-bordered table-hover">
         <thead class="thead-dark">
           <tr>
@@ -53,21 +54,21 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <ng-template #noData>
+      <p class="no-data">No data to display.</p>
     </ng-template>
-  </div>
-  <ng-template #noData>
-    <p class="no-data">No data to display.</p>
+    <div class="row btn-container">
+      <app-pagination *ngIf="!matTable && dataTable && dataTable.length > 0 && paging.totalRow >= paging.rowPerPage" [paging]="paging" (setPage)="setPage($event)"></app-pagination>
+      <button
+        class="btn btn-success"
+        [ngClass]="dataTable && dataTable.length > 0
+        ? 'btn-right'
+        : 'btn-center'"
+        (click)="openForm('CREATE')">
+        <i class="fa fa-plus"></i>
+        &nbsp;New Employee Data
+      </button>
+    </div>
   </ng-template>
-  <div class="row btn-container">
-    <app-pagination *ngIf="!matTable && dataTable && dataTable.length > 0 && paging.totalRow >= paging.rowPerPage" [paging]="paging" (setPage)="setPage($event)"></app-pagination>
-    <button
-      class="btn btn-success"
-      [ngClass]="dataTable && dataTable.length > 0
-      ? 'btn-right'
-      : 'btn-center'"
-      (click)="openForm('CREATE')">
-      <i class="fa fa-plus"></i>
-      &nbsp;New Employee Data
-    </button>
-  </div>
 </div>

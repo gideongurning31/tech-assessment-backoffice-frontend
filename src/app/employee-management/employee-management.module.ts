@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { EmployeeManagementRoutingModule } from './employee-management-routing.module';
 import { EmployeeManagementComponent } from './employee-management.component';
 import { EmployeeManagementFormComponent } from './employee-management-form/employee-management-form.component';
@@ -36,6 +37,7 @@ import { FilterHelper } from './filter/filter-helper.service';
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
+    MatSortModule,
     EmployeeManagementRoutingModule,
   ],
   entryComponents: [EmployeeManagementFormComponent],
